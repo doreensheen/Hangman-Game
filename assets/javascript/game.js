@@ -1,11 +1,8 @@
 // -----------------------------------------------------------------------------------------------------------
+// Holds my functions and stores their definition
 var myFunctions = {   
 
-    replaceAt: function(str,index,chr) {
-        if(index > str.length-1) return str;
-        return str.substr(0,index) + chr + str.substr(index+1);
-    },
-
+    // Determine whether key pressed is a correct guess, if so, do the following:
     displayCorrectLetter: function(keyPressed) {
         // if key pressed is a correct letter...
         if (keyPressed === wordArray[j]) {
@@ -17,7 +14,8 @@ var myFunctions = {
         }
     },
     
-    // Display Letters Guessed:
+    // Determine whether key pressed is an incorrect guess, if so, do the following: 
+    // Display Letters Guessed
     displayLettersGuessed: function(keyPressed) {
     
         // Possible 'key' guesses
@@ -69,18 +67,18 @@ var dashesArray = dashes.split("");
 var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 
 // -----------------------------------------------------------------------------------------------------------
-// Sequence of Actions when key Pressed
+// Logic for Sequence of Actions when key Pressed
 document.onkeyup = function(letter) {
     var keyPressed = letter.key;
     console.log("keyPressed: " + keyPressed);
     
     for (j = 0; j < wordArray.length; j++) {
-
         myFunctions.displayCorrectLetter(keyPressed);
-
-        myFunctions.displayLettersGuessed(keyPressed);
- 
     };
+    var indexOfWord = wordArray.indexOf(keyPressed);
+    if (indexOfWord === -1) {
+        myFunctions.displayLettersGuessed(keyPressed);
+    }
 };
     
 
