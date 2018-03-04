@@ -20,15 +20,26 @@ var myFunctions = {
     
         // Possible 'key' guesses
         var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-                
             // Determine whether key pressed is found in array alphabet; if key is not in alphabet, index = -1
             index = alphabet.indexOf(keyPressed);
+            
             if (index === -1) {
                 alert("That is not a letter. Try again.");
             }else {
                 // Display key pressed by player
                 var counterLetters = keyPressed;
-                document.getElementById("letters").innerHTML += ("  " + counterLetters + "  ");
+                guessedArray = guessedLetters.split("");
+                indexOfGuessed = guessedArray.indexOf(keyPressed);
+                console.log("indexOfGuessed: " + indexOfGuessed);
+                
+                if (indexOfGuessed === -1) {
+                    guessedLetters = document.getElementById("letters").innerHTML += (counterLetters);
+
+                }else {
+
+                };
+                    
+
             };
     },
 };
@@ -55,6 +66,7 @@ var randomNumber = Math.floor(Math.random()*listOfWords.length);
 var randomWord = listOfWords[randomNumber];
 var wordArray = randomWord.split("");
 
+
 // Display random word to html letter by letter
 for (i = 0; i < wordArray.length; i++) {
     var oneLetterOfWord = wordArray[i];
@@ -65,6 +77,7 @@ for (i = 0; i < wordArray.length; i++) {
 
 var dashesArray = dashes.split("");
 var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+var guessedLetters = "";
 
 // -----------------------------------------------------------------------------------------------------------
 // Logic for Sequence of Actions when key Pressed
@@ -75,6 +88,7 @@ document.onkeyup = function(letter) {
     for (j = 0; j < wordArray.length; j++) {
         myFunctions.displayCorrectLetter(keyPressed);
     };
+
     var indexOfWord = wordArray.indexOf(keyPressed);
     if (indexOfWord === -1) {
         myFunctions.displayLettersGuessed(keyPressed);
