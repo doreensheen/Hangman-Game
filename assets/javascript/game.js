@@ -124,14 +124,20 @@ document.onkeyup = function(letter) {
     
     if (counterGuessesLeft === 0) {
         document.getElementById("guesses").innerHTML = counterGuessesLeft;
-        alert("You've used up all your guesses. Refresh the page to play again.");
+        setTimeout(function() {
+            alert("You've used up all your guesses. Refresh the page to play again.");
+        },10)
     };
 
     if (counterLettersCorrect === wordArray.length) {
-        alert("You Won!");
         counterWordsCorrect = counterWordsCorrect + 1;
         document.getElementById("wins").innerHTML = counterWordsCorrect;
-        myFunctions.newRound();
+        setTimeout(function() {
+            alert("You Won!");
+        },10);
+        setTimeout(function() {
+            myFunctions.newRound();
+        });
 
     };
 
