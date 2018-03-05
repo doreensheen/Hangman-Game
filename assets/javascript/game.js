@@ -6,12 +6,14 @@ var myFunctions = {
     displayCorrectLetter: function(keyPressed) {
         // if key pressed is a correct letter...
         if (keyPressed === wordArray[j]) {
-            // 1. display letter in place of dash under "Current Word"
+            // display letter in place of dash under "Current Word"
             var removedElements = dashesArray.splice(j, 1, keyPressed);
             dashes = dashesArray.join("");
 
             document.getElementById("mysteryWord").innerHTML = dashes;
-        }
+            counterLettersCorrect = counterLettersCorrect + 1;
+            console.log(counterLettersCorrect);
+        };
     },
     
     // Determine whether key pressed is an incorrect guess, if so, do the following: 
@@ -30,16 +32,13 @@ var myFunctions = {
                 var counterLetters = keyPressed;
                 guessedArray = guessedLetters.split("");
                 indexOfGuessed = guessedArray.indexOf(keyPressed);
-                console.log("indexOfGuessed: " + indexOfGuessed);
                 
                 if (indexOfGuessed === -1) {
                     guessedLetters = document.getElementById("letters").innerHTML += (counterLetters);
-
-                }else {
+                    counterGuessesLeft = counterGuessesLeft - 1;
+                        document.getElementById("guesses").innerHTML = counterGuessesLeft;
 
                 };
-                    
-
             };
     },
 };
@@ -57,42 +56,55 @@ var counterGuesses = counterGuessesLeft;
     document.getElementById("guesses").innerHTML = counterGuesses;
 
 // -----------------------------------------------------------------------------------------------------------
-// Display Mystery Word in Dashes:
+// Setup: mystery word in dashes, counters reset
 
 
 // Generate random word
-var listOfWords = ["mystery"];
+var listOfWords = ["mystery","bamboo","moustache","guide","conan"];
 var randomNumber = Math.floor(Math.random()*listOfWords.length);
 var randomWord = listOfWords[randomNumber];
 var wordArray = randomWord.split("");
 
 
-// Display random word to html letter by letter
+// Display random word to html with one dash representing each unguessed letter
 for (i = 0; i < wordArray.length; i++) {
     var oneLetterOfWord = wordArray[i];
-    console.log(oneLetterOfWord);
     var dash = "-";
     dashes = document.getElementById("mysteryWord").innerHTML += (dash);
 };
 
+// Create variables needed for game to run
 var dashesArray = dashes.split("");
 var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 var guessedLetters = "";
 
 // -----------------------------------------------------------------------------------------------------------
 // Logic for Sequence of Actions when key Pressed
+
+
 document.onkeyup = function(letter) {
     var keyPressed = letter.key;
-    console.log("keyPressed: " + keyPressed);
     
     for (j = 0; j < wordArray.length; j++) {
         myFunctions.displayCorrectLetter(keyPressed);
     };
 
+    if (counterLettersCorrect === wordArray.length) {
+        alert("You Won!");
+        counterWordsCorrect = counterWordsCorrect + 1;
+        document.getElementById("wins").innerHTML = counterWordsCorrect;
+
+    };
+
     var indexOfWord = wordArray.indexOf(keyPressed);
     if (indexOfWord === -1) {
         myFunctions.displayLettersGuessed(keyPressed);
-    }
+    };
+
+    if (counterGuessesLeft === 0) {
+        document.getElementById("guesses").innerHTML = counterGuessesLeft;
+        alert("You've used up all your guesses. Refresh the page to play again.");
+    };
 };
     
 

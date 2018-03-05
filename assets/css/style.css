@@ -1,0 +1,13 @@
+.spaceOut {  
+        transform:scale(2,2); 
+        -webkit-transform:scale(2,2);
+        display:inline-block;
+        margin-left: 20px;
+}
+
+h2 {
+    color: darkblue;
+}
+body {
+    margin: 20px;
+}
