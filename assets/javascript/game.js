@@ -41,6 +41,33 @@ var myFunctions = {
                 };
             };
     },
+
+    newRound: function() {
+
+        // reset "Current Word: "
+        document.getElementById("mysteryWord").innerHTML = "";
+        randomNumber = Math.floor(Math.random()*listOfWords.length);
+        randomWord = listOfWords[randomNumber];
+        wordArray = randomWord.split("");
+        for (i = 0; i < wordArray.length; i++) {
+            oneLetterOfWord = wordArray[i];
+            dashes = document.getElementById("mysteryWord").innerHTML += (dash);
+        };
+        dashesArray = dashes.split("");
+        guessedLetters = "";
+        counterLettersCorrect = 0;
+
+
+        // reset "Number of Guesses Left: "
+        document.getElementById("guesses").innerHTML = "";
+        counterGuessesLeft = 10;
+        counterWins = counterGuessesLeft;
+        document.getElementById("guesses").innerHTML = counterWins;
+
+        // reset "Letters Already Guesses: "
+        document.getElementById("letters").innerHTML = "";
+
+    }
 };
 
 // -------------------------------------------------------------------------------------------------------------
@@ -60,7 +87,9 @@ var counterGuesses = counterGuessesLeft;
 
 
 // Generate random word
-var listOfWords = ["mystery","bamboo","moustache","guide","conan"];
+var listOfWords = ["tulip","cabbage","bamboo","spinach","tomato","rose"];
+var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+
 var randomNumber = Math.floor(Math.random()*listOfWords.length);
 var randomWord = listOfWords[randomNumber];
 var wordArray = randomWord.split("");
@@ -75,7 +104,6 @@ for (i = 0; i < wordArray.length; i++) {
 
 // Create variables needed for game to run
 var dashesArray = dashes.split("");
-var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 var guessedLetters = "";
 
 // -----------------------------------------------------------------------------------------------------------
@@ -89,22 +117,24 @@ document.onkeyup = function(letter) {
         myFunctions.displayCorrectLetter(keyPressed);
     };
 
-    if (counterLettersCorrect === wordArray.length) {
-        alert("You Won!");
-        counterWordsCorrect = counterWordsCorrect + 1;
-        document.getElementById("wins").innerHTML = counterWordsCorrect;
-
-    };
-
     var indexOfWord = wordArray.indexOf(keyPressed);
     if (indexOfWord === -1) {
         myFunctions.displayLettersGuessed(keyPressed);
     };
-
+    
     if (counterGuessesLeft === 0) {
         document.getElementById("guesses").innerHTML = counterGuessesLeft;
         alert("You've used up all your guesses. Refresh the page to play again.");
     };
+
+    if (counterLettersCorrect === wordArray.length) {
+        alert("You Won!");
+        counterWordsCorrect = counterWordsCorrect + 1;
+        document.getElementById("wins").innerHTML = counterWordsCorrect;
+        myFunctions.newRound();
+
+    };
+
 };
     
 
