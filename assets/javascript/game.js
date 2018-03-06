@@ -65,7 +65,7 @@ var myFunctions = {
         document.getElementById("guesses").innerHTML = counterWins;
 
         // reset "Letters Already Guesses: "
-        document.getElementById("letters").innerHTML = "";
+        document.getElementById("letters").innerHTML = " ";
 
     }
 };
@@ -81,6 +81,8 @@ var counterWins = counterWordsCorrect;
 
 var counterGuesses = counterGuessesLeft;
     document.getElementById("guesses").innerHTML = counterGuesses;
+
+    document.getElementById("letters").innerHTML = " ";
 
 // -----------------------------------------------------------------------------------------------------------
 // Setup: mystery word in dashes, counters reset
@@ -133,7 +135,7 @@ document.onkeyup = function(letter) {
         counterWordsCorrect = counterWordsCorrect + 1;
         document.getElementById("wins").innerHTML = counterWordsCorrect;
         setTimeout(function() {
-            alert("You Won!");
+            alert("You Won! Click OK to move onto the next round.");
         },10);
         setTimeout(function() {
             myFunctions.newRound();

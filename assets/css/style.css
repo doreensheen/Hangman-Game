@@ -1,13 +1,40 @@
-.spaceOut {  
-        transform:scale(2,2); 
-        -webkit-transform:scale(2,2);
-        display:inline-block;
-        margin-left: 20px;
+
+body {
+    background-image: url("../images/Garden1.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+div.titleBlock {
+    padding-top: 10px;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    background-color: black;
+    color: lightgrey;
+}
+
+.block {
+    background-color: beige;
+    opacity: 0.8;
+    border-top: 10px;
+    border-color: black;
+}
+
+div {
+    display: block;
+}
+
+.text {
+    position: relative;
+    z-index: 1;
 }
 
 h2 {
-    color: darkblue;
+    color: black;
+    font-size: 20px;
 }
-body {
-    margin: 20px;
+
+.lead {
+    color: black;
+    font-size: 40px;
 }
